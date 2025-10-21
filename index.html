@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Time Tracking Manager - Collaborative Task Manager</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="app-container">
+      <!-- Header with User Presence -->
+      <header class="app-header">
+        <div class="header-left">
+          <h1><i class="fas fa-clock"></i> Time Tracking Manager</h1>
+          <div class="connection-status">
+            <span class="status-indicator online"></span>
+            <span class="status-text">Connected</span>
+          </div>
+        </div>
+        <div class="header-right">
+          <div class="active-users">
+            <span class="users-label">Active Users:</span>
+            <div class="user-avatars" id="userAvatars">
+              <!-- User avatars will be dynamically added here -->
+            </div>
+          </div>
+          <div class="user-menu">
+            <img src="https://picsum.photos/seed/user1/40/40.jpg" alt="User" class="user-avatar" />
+            <span class="user-name">John Doe</span>
+          </div>
+        </div>
+      </header>
+
+      <div class="main-content">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+          <div class="sidebar-section">
+            <h3><i class="fas fa-project-diagram"></i> Projects</h3>
+            <div class="project-list">
+              <div class="project-item active" data-project="1">
+                <i class="fas fa-folder"></i>
+                <span>Website Redesign</span>
+                <span class="task-count">12 tasks</span>
+              </div>
+              <div class="project-item" data-project="2">
+                <i class="fas fa-folder"></i>
+                <span>Mobile App</span>
+                <span class="task-count">8 tasks</span>
+              </div>
+              <div class="project-item" data-project="3">
+                <i class="fas fa-folder"></i>
+                <span>API Development</span>
+                <span class="task-count">5 tasks</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="sidebar-section">
+            <h3><i class="fas fa-users"></i> Team</h3>
+            <div class="team-list">
+              <div class="team-member online">
+                <img src="https://picsum.photos/seed/user2/32/32.jpg" alt="Team member" />
+                <div class="member-info">
+                  <span class="member-name">Sarah Wilson</span>
+                  <span class="member-status">Working on Task #23</span>
+                </div>
+                <div class="member-indicator"></div>
+              </div>
+              <div class="team-member online">
+                <img src="https://picsum.photos/seed/user3/32/32.jpg" alt="Team member" />
+                <div class="member-info">
+                  <span class="member-name">Mike Chen</span>
+                  <span class="member-status">Reviewing PR #45</span>
+                </div>
+                <div class="member-indicator"></div>
+              </div>
+              <div class="team-member away">
+                <img src="https://picsum.photos/seed/user4/32/32.jpg" alt="Team member" />
+                <div class="member-info">
+                  <span class="member-name">Emily Davis</span>
+                  <span class="member-status">Away - 5 min</span>
+                </div>
+                <div class="member-indicator"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="sidebar-section">
+            <h3><i class="fas fa-chart-line"></i> Time Statistics</h3>
+            <div class="time-stats">
+              <div class="stat-item">
+                <span class="stat-label">Today</span>
+                <span class="stat-value">6h 23m</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-label">This Week</span>
+                <span class="stat-value">28h 15m</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-label">This Month</span>
+                <span class="stat-value">112h 45m</span>
+              </div>
+            </div>
+          </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="content-area">
+          <div class="content-header">
+            <div class="breadcrumbs">
+              <span>Projects</span>
+              <i class="fas fa-chevron-right"></i>
+              <span>Website Redesign</span>
+              <i class="fas fa-chevron-right"></i>
+              <span>Tasks</span>
+            </div>
+            <div class="header-actions">
+              <button class="btn btn-primary" id="addTaskBtn">
+                <i class="fas fa-plus"></i> Add Task
+              </button>
+              <button class="btn btn-secondary" id="filterBtn">
+                <i class="fas fa-filter"></i> Filter
+              </button>
+            </div>
+          </div>
+
+          <!-- Task Board -->
+          <div class="task-board">
+            <div class="task-column" data-status="todo">
+              <div class="column-header">
+                <h3>To Do</h3>
+                <span class="task-count">4</span>
+              </div>
+              <div class="task-list" id="todoTasks">
+                <div class="task-card" draggable="true" data-task-id="1" data-users="user1,user2">
+                  <div class="task-header">
+                    <span class="task-priority high"></span>
+                    <h4>Design Homepage Layout</h4>
+                    <div class="task-actions">
+                      <button class="task-menu"><i class="fas fa-ellipsis-h"></i></button>
+                    </div>
+                  </div>
+                  <div class="task-description">
+                    Create responsive design for the main homepage with modern UI elements
+                  </div>
+                  <div class="task-meta">
+                    <div class="task-users">
+                      <img src="https://picsum.photos/seed/user1/24/24.jpg" alt="User" />
+                      <img src="https://picsum.photos/seed/user2/24/24.jpg" alt="User" />
+                      <div class="user-count">+2</div>
+                    </div>
+                    <div class="task-time">
+                      <i class="fas fa-clock"></i>
+                      <span>2h 30m</span>
+                    </div>
+                  </div>
+                  <div class="task-attachments">
+                    <i class="fas fa-paperclip"></i>
+                    <span>3 files</span>
+                  </div>
+                  <div class="presence-indicators">
+                    <div class="presence-indicator active" data-user="user1">
+                      <img src="https://picsum.photos/seed/user1/20/20.jpg" alt="User" />
+                      <span class="presence-tooltip">John is viewing</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="task-card" draggable="true" data-task-id="2" data-users="user3">
+                  <div class="task-header">
+                    <span class="task-priority medium"></span>
+                    <h4>Setup Development Environment</h4>
+                    <div class="task-actions">
+                      <button class="task-menu"><i class="fas fa-ellipsis-h"></i></button>
+                    </div>
+                  </div>
+                  <div class="task-description">
+                    Configure webpack, babel, and other build tools
+                  </div>
+                  <div class="task-meta">
+                    <div class="task-users">
+                      <img src="https://picsum.photos/seed/user3/24/24.jpg" alt="User" />
+                    </div>
+                    <div class="task-time">
+                      <i class="fas fa-clock"></i>
+                      <span>1h 15m</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="task-column" data-status="inprogress">
+              <div class="column-header">
+                <h3>In Progress</h3>
+                <span class="task-count">3</span>
+              </div>
+              <div class="task-list" id="inProgressTasks">
+                <div class="task-card" draggable="true" data-task-id="3" data-users="user2,user4">
+                  <div class="task-header">
+                    <span class="task-priority high"></span>
+                    <h4>Implement Navigation Component</h4>
+                    <div class="task-actions">
+                      <button class="task-menu"><i class="fas fa-ellipsis-h"></i></button>
+                    </div>
+                  </div>
+                  <div class="task-description">
+                    Build reusable navigation component with dropdown menus
+                  </div>
+                  <div class="task-progress">
+                    <div class="progress-bar">
+                      <div class="progress-fill" style="width: 65%"></div>
+                    </div>
+                    <span class="progress-text">65%</span>
+                  </div>
+                  <div class="task-meta">
+                    <div class="task-users">
+                      <img src="https://picsum.photos/seed/user2/24/24.jpg" alt="User" />
+                      <img src="https://picsum.photos/seed/user4/24/24.jpg" alt="User" />
+                    </div>
+                    <div class="task-time">
+                      <i class="fas fa-clock"></i>
+                      <span>4h 45m</span>
+                    </div>
+                  </div>
+                  <div class="presence-indicators">
+                    <div class="presence-indicator active" data-user="user2">
+                      <img src="https://picsum.photos/seed/user2/20/20.jpg" alt="User" />
+                      <span class="presence-tooltip">Sarah is editing</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="task-column" data-status="review">
+              <div class="column-header">
+                <h3>Review</h3>
+                <span class="task-count">2</span>
+              </div>
+              <div class="task-list" id="reviewTasks">
+                <div class="task-card" draggable="true" data-task-id="4" data-users="user1">
+                  <div class="task-header">
+                    <span class="task-priority low"></span>
+                    <h4>Database Schema Design</h4>
+                    <div class="task-actions">
+                      <button class="task-menu"><i class="fas fa-ellipsis-h"></i></button>
+                    </div>
+                  </div>
+                  <div class="task-description">
+                    Finalize database schema for user management system
+                  </div>
+                  <div class="task-meta">
+                    <div class="task-users">
+                      <img src="https://picsum.photos/seed/user1/24/24.jpg" alt="User" />
+                    </div>
+                    <div class="task-time">
+                      <i class="fas fa-clock"></i>
+                      <span>3h 20m</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="task-column" data-status="done">
+              <div class="column-header">
+                <h3>Done</h3>
+                <span class="task-count">8</span>
+              </div>
+              <div class="task-list" id="doneTasks">
+                <div class="task-card" draggable="true" data-task-id="5" data-users="user3">
+                  <div class="task-header">
+                    <span class="task-priority medium"></span>
+                    <h4>Setup Git Repository</h4>
+                    <div class="task-actions">
+                      <button class="task-menu"><i class="fas fa-ellipsis-h"></i></button>
+                    </div>
+                  </div>
+                  <div class="task-description">
+                    Initialize git repo with proper branching strategy
+                  </div>
+                  <div class="task-meta">
+                    <div class="task-users">
+                      <img src="https://picsum.photos/seed/user3/24/24.jpg" alt="User" />
+                    </div>
+                    <div class="task-time">
+                      <i class="fas fa-clock"></i>
+                      <span>0h 45m</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+
+      <!-- Activity Feed -->
+      <div class="activity-feed">
+        <div class="feed-header">
+          <h3><i class="fas fa-stream"></i> Activity Feed</h3>
+          <button class="feed-toggle" id="feedToggle">
+            <i class="fas fa-chevron-right"></i>
+          </button>
+        </div>
+        <div class="feed-content" id="feedContent">
+          <div class="activity-item">
+            <div class="activity-icon">
+              <img src="https://picsum.photos/seed/user2/32/32.jpg" alt="User" />
+            </div>
+            <div class="activity-details">
+              <div class="activity-text">
+                <strong>Sarah Wilson</strong> started working on
+                <strong>Navigation Component</strong>
+              </div>
+              <div class="activity-time">2 minutes ago</div>
+            </div>
+          </div>
+
+          <div class="activity-item">
+            <div class="activity-icon">
+              <img src="https://picsum.photos/seed/user1/32/32.jpg" alt="User" />
+            </div>
+            <div class="activity-details">
+              <div class="activity-text">
+                <strong>John Doe</strong> added a comment to
+                <strong>Homepage Layout</strong>
+              </div>
+              <div class="activity-time">5 minutes ago</div>
+            </div>
+          </div>
+
+          <div class="activity-item">
+            <div class="activity-icon file">
+              <i class="fas fa-file"></i>
+            </div>
+            <div class="activity-details">
+              <div class="activity-text">
+                <strong>Mike Chen</strong> attached 3 files to
+                <strong>Database Schema</strong>
+              </div>
+              <div class="activity-time">12 minutes ago</div>
+            </div>
+          </div>
+
+          <div class="activity-item">
+            <div class="activity-icon">
+              <img src="https://picsum.photos/seed/user4/32/32.jpg" alt="User" />
+            </div>
+            <div class="activity-details">
+              <div class="activity-text">
+                <strong>Emily Davis</strong> completed
+                <strong>Git Repository Setup</strong>
+              </div>
+              <div class="activity-time">25 minutes ago</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Time Tracking Modal -->
+      <div class="modal" id="timeTrackingModal">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3>Time Tracking</h3>
+            <button class="modal-close" id="closeTimeModal">
+              <i class="fas fa-times"></i>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="time-tracker">
+              <div class="current-task">
+                <h4>Current Task: Design Homepage Layout</h4>
+                <div class="time-display">
+                  <span class="time-value" id="timeDisplay">02:34:15</span>
+                </div>
+              </div>
+              <div class="time-controls">
+                <button class="btn btn-success" id="startTimer">
+                  <i class="fas fa-play"></i> Start
+                </button>
+                <button class="btn btn-warning" id="pauseTimer">
+                  <i class="fas fa-pause"></i> Pause
+                </button>
+                <button class="btn btn-danger" id="stopTimer">
+                  <i class="fas fa-stop"></i> Stop
+                </button>
+              </div>
+              <div class="time-entries">
+                <h4>Today's Time Entries</h4>
+                <div class="entry-list">
+                  <div class="time-entry">
+                    <div class="entry-task">Homepage Layout</div>
+                    <div class="entry-time">2h 15m</div>
+                    <div class="entry-actions">
+                      <button class="edit-entry"><i class="fas fa-edit"></i></button>
+                    </div>
+                  </div>
+                  <div class="time-entry">
+                    <div class="entry-task">Navigation Component</div>
+                    <div class="entry-time">1h 45m</div>
+                    <div class="entry-actions">
+                      <button class="edit-entry"><i class="fas fa-edit"></i></button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- File Attachment Modal -->
+      <div class="modal" id="fileModal">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3>File Attachments</h3>
+            <button class="modal-close" id="closeFileModal">
+              <i class="fas fa-times"></i>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="file-upload-area">
+              <div class="upload-zone" id="uploadZone">
+                <i class="fas fa-cloud-upload-alt"></i>
+                <p>Drag and drop files here or click to browse</p>
+                <input type="file" id="fileInput" multiple accept="*/*" />
+              </div>
+            </div>
+            <div class="file-list">
+              <h4>Attached Files</h4>
+              <div class="file-items">
+                <div class="file-item">
+                  <div class="file-icon">
+                    <i class="fas fa-file-pdf"></i>
+                  </div>
+                  <div class="file-info">
+                    <div class="file-name">Design_Mockup.pdf</div>
+                    <div class="file-size">2.4 MB</div>
+                  </div>
+                  <div class="file-actions">
+                    <button class="download-file"><i class="fas fa-download"></i></button>
+                    <button class="delete-file"><i class="fas fa-trash"></i></button>
+                  </div>
+                </div>
+                <div class="file-item">
+                  <div class="file-icon">
+                    <i class="fas fa-file-image"></i>
+                  </div>
+                  <div class="file-info">
+                    <div class="file-name">Homepage_Screenshot.png</div>
+                    <div class="file-size">856 KB</div>
+                  </div>
+                  <div class="file-actions">
+                    <button class="download-file"><i class="fas fa-download"></i></button>
+                    <button class="delete-file"><i class="fas fa-trash"></i></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Floating Action Buttons -->
+      <div class="fab-container">
+        <button class="fab" id="timeTrackingFab">
+          <i class="fas fa-stopwatch"></i>
+        </button>
+        <button class="fab" id="attachmentFab">
+          <i class="fas fa-paperclip"></i>
+        </button>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

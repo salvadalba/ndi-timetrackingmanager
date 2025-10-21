@@ -1,0 +1,8 @@
+#!/usr/bin/env sh
+. "$(dirname "$0")/_/husky.sh"
+
+# Run only linting for fast feedback before committing
+npm run lint || {
+  echo "Linting failed. Commit aborted."
+  exit 1
+}

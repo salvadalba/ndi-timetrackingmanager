@@ -1,0 +1,32 @@
+name: CI
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  test-and-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Use Node.js 18
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+      - name: Install dependencies
+        run: npm ci
+      - name: Run linter
+        run: npm run lint
+      - name: Run tests
+        run: npm test
+      - name: Run E2E smoke tests
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y chromium-browser
+          npm install --no-audit --no-fund --legacy-peer-deps
+          # find chromium binary
+          CHROME_PATH=$(which chromium-browser || which chromium || which google-chrome-stable)
+          echo "Using Chrome at $CHROME_PATH"
+          CHROME_PATH=$CHROME_PATH npm run e2e
