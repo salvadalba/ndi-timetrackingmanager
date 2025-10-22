@@ -16,21 +16,21 @@
   --darker-bg: #0f0f0f;
   --light-bg: #2a2a2a;
   --border-color: #3a3a3a;
-  --text-primary: #ffffff;
+  --text-primary: #fff;
   --text-secondary: #b0b0b0;
   --text-muted: #808080;
-  --shadow-light: 0 2px 8px rgba(0, 0, 0, 0.3);
-  --shadow-medium: 0 4px 16px rgba(0, 0, 0, 0.4);
-  --shadow-heavy: 0 8px 32px rgba(0, 0, 0, 0.5);
+  --shadow-light: 0 2px 8px rgb(0 0 0 / 30%);
+  --shadow-medium: 0 4px 16px rgb(0 0 0 / 40%);
+  --shadow-heavy: 0 8px 32px rgb(0 0 0 / 50%);
   --transition-speed: 0.3s;
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
-    sans-serif;
+  height: 100vh;
   background: linear-gradient(135deg, var(--darker-bg) 0%, var(--dark-bg) 100%);
   color: var(--text-primary);
-  height: 100vh;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
+    sans-serif;
   overflow: hidden;
 }
 
@@ -42,15 +42,15 @@ body {
 
 /* Header Styles */
 .app-header {
+  z-index: 100;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
-  background: rgba(26, 26, 26, 0.9);
+  border-bottom: 1px solid var(--border-color);
+  background: rgb(26 26 26 / 90%);
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
-  border-bottom: 1px solid var(--border-color);
-  z-index: 100;
 }
 
 .header-left {
@@ -60,9 +60,9 @@ body {
 }
 
 .header-left h1 {
+  color: var(--text-primary);
   font-size: 1.5rem;
   font-weight: 600;
-  color: var(--text-primary);
 }
 
 .connection-status {
@@ -84,17 +84,19 @@ body {
 }
 
 .status-text {
-  font-size: 0.875rem;
   color: var(--text-secondary);
+  font-size: 0.875rem;
 }
 
 @keyframes pulse {
   0% {
     opacity: 1;
   }
+
   50% {
     opacity: 0.5;
   }
+
   100% {
     opacity: 1;
   }
@@ -113,8 +115,8 @@ body {
 }
 
 .users-label {
-  font-size: 0.875rem;
   color: var(--text-secondary);
+  font-size: 0.875rem;
 }
 
 .user-avatars {
@@ -125,17 +127,17 @@ body {
 .user-avatars img {
   width: 32px;
   height: 32px;
-  border-radius: 50%;
-  border: 2px solid var(--dark-bg);
   margin-left: -8px;
+  border: 2px solid var(--dark-bg);
+  border-radius: 50%;
   -webkit-transition: -webkit-transform var(--transition-speed);
   transition: transform var(--transition-speed);
 }
 
 .user-avatars img:hover {
-  transform: translateY(-2px);
-  z-index: 10;
   position: relative;
+  z-index: 10;
+  transform: translateY(-2px);
 }
 
 .user-menu {
@@ -143,14 +145,14 @@ body {
   align-items: center;
   gap: 0.75rem;
   padding: 0.5rem 1rem;
-  background: rgba(255, 255, 255, 0.05);
   border-radius: 8px;
+  background: rgb(255 255 255 / 5%);
   cursor: pointer;
   transition: background var(--transition-speed);
 }
 
 .user-menu:hover {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgb(255 255 255 / 10%);
 }
 
 .user-avatar {
@@ -160,8 +162,8 @@ body {
 }
 
 .user-name {
-  font-size: 0.875rem;
   color: var(--text-primary);
+  font-size: 0.875rem;
 }
 
 /* Main Content Layout */
@@ -174,12 +176,12 @@ body {
 /* Sidebar Styles */
 .sidebar {
   width: 320px;
-  background: rgba(26, 26, 26, 0.8);
+  padding: 1.5rem;
+  border-right: 1px solid var(--border-color);
+  background: rgb(26 26 26 / 80%);
+  overflow-y: auto;
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
-  border-right: 1px solid var(--border-color);
-  overflow-y: auto;
-  padding: 1.5rem;
 }
 
 .sidebar-section {
@@ -187,15 +189,15 @@ body {
 }
 
 .sidebar-section h3 {
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: var(--text-secondary);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  margin-bottom: 1rem;
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  margin-bottom: 1rem;
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .project-list {
@@ -209,14 +211,14 @@ body {
   align-items: center;
   gap: 0.75rem;
   padding: 0.75rem 1rem;
-  background: rgba(255, 255, 255, 0.03);
   border-radius: 8px;
+  background: rgb(255 255 255 / 3%);
   cursor: pointer;
   transition: all var(--transition-speed);
 }
 
 .project-item:hover {
-  background: rgba(255, 255, 255, 0.08);
+  background: rgb(255 255 255 / 8%);
   transform: translateX(4px);
 }
 
@@ -226,8 +228,8 @@ body {
 }
 
 .project-item i {
-  font-size: 1rem;
   color: var(--text-secondary);
+  font-size: 1rem;
 }
 
 .project-item.active i {
@@ -236,11 +238,11 @@ body {
 
 .task-count {
   margin-left: auto;
-  font-size: 0.75rem;
-  color: var(--text-muted);
-  background: rgba(255, 255, 255, 0.1);
   padding: 0.25rem 0.5rem;
   border-radius: 12px;
+  background: rgb(255 255 255 / 10%);
+  color: var(--text-muted);
+  font-size: 0.75rem;
 }
 
 .team-list {
@@ -250,13 +252,13 @@ body {
 }
 
 .team-member {
+  position: relative;
   display: flex;
   align-items: center;
   gap: 0.75rem;
   padding: 0.75rem;
-  background: rgba(255, 255, 255, 0.03);
   border-radius: 8px;
-  position: relative;
+  background: rgb(255 255 255 / 3%);
 }
 
 .team-member img {
@@ -270,16 +272,16 @@ body {
 }
 
 .member-name {
+  display: block;
+  color: var(--text-primary);
   font-size: 0.875rem;
   font-weight: 500;
-  color: var(--text-primary);
-  display: block;
 }
 
 .member-status {
-  font-size: 0.75rem;
-  color: var(--text-muted);
   display: block;
+  color: var(--text-muted);
+  font-size: 0.75rem;
 }
 
 .member-indicator {
@@ -308,25 +310,25 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 0.75rem;
-  background: rgba(255, 255, 255, 0.03);
   border-radius: 8px;
+  background: rgb(255 255 255 / 3%);
 }
 
 .stat-label {
-  font-size: 0.875rem;
   color: var(--text-secondary);
+  font-size: 0.875rem;
 }
 
 .stat-value {
+  color: var(--text-primary);
   font-size: 1rem;
   font-weight: 600;
-  color: var(--text-primary);
 }
 
 /* Content Area Styles */
 .content-area {
-  flex: 1;
   display: flex;
+  flex: 1;
   flex-direction: column;
   overflow: hidden;
 }
@@ -343,13 +345,13 @@ body {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  font-size: 0.875rem;
   color: var(--text-secondary);
+  font-size: 0.875rem;
 }
 
 .breadcrumbs i {
-  font-size: 0.75rem;
   color: var(--text-muted);
+  font-size: 0.75rem;
 }
 
 .header-actions {
@@ -362,9 +364,9 @@ body {
   align-items: center;
   gap: 0.5rem;
   padding: 0.5rem 1rem;
-  background: rgba(255, 255, 255, 0.1);
   border: 1px solid var(--border-color);
   border-radius: 6px;
+  background: rgb(255 255 255 / 10%);
   color: var(--text-primary);
   font-size: 0.875rem;
   cursor: pointer;
@@ -372,13 +374,13 @@ body {
 }
 
 .btn:hover {
-  background: rgba(255, 255, 255, 0.15);
+  background: rgb(255 255 255 / 15%);
   transform: translateY(-1px);
 }
 
 .btn-primary {
-  background: var(--primary-color);
   border-color: var(--primary-color);
+  background: var(--primary-color);
 }
 
 .btn-primary:hover {
@@ -386,18 +388,18 @@ body {
 }
 
 .btn-success {
-  background: var(--success-color);
   border-color: var(--success-color);
+  background: var(--success-color);
 }
 
 .btn-warning {
-  background: var(--warning-color);
   border-color: var(--warning-color);
+  background: var(--warning-color);
 }
 
 .btn-danger {
-  background: var(--danger-color);
   border-color: var(--danger-color);
+  background: var(--danger-color);
 }
 
 /* Task Board Styles */
@@ -410,12 +412,12 @@ body {
 }
 
 .task-column {
-  flex: 1;
-  min-width: 300px;
-  background: rgba(255, 255, 255, 0.03);
-  border-radius: 12px;
   display: flex;
+  flex: 1;
   flex-direction: column;
+  min-width: 300px;
+  border-radius: 12px;
+  background: rgb(255 255 255 / 3%);
 }
 
 .column-header {
@@ -427,34 +429,34 @@ body {
 }
 
 .column-header h3 {
+  color: var(--text-primary);
   font-size: 1rem;
   font-weight: 600;
-  color: var(--text-primary);
 }
 
 .task-list {
-  flex: 1;
-  padding: 1rem;
-  overflow-y: auto;
   display: flex;
+  flex: 1;
   flex-direction: column;
   gap: 0.75rem;
+  padding: 1rem;
+  overflow-y: auto;
 }
 
 .task-card {
-  background: rgba(255, 255, 255, 0.05);
+  position: relative;
+  padding: 1rem;
   border: 1px solid var(--border-color);
   border-radius: 8px;
-  padding: 1rem;
+  background: rgb(255 255 255 / 5%);
   cursor: pointer;
   transition: all var(--transition-speed);
-  position: relative;
 }
 
 .task-card:hover {
-  background: rgba(255, 255, 255, 0.08);
-  transform: translateY(-2px);
+  background: rgb(255 255 255 / 8%);
   box-shadow: var(--shadow-light);
+  transform: translateY(-2px);
 }
 
 .task-header {
@@ -485,9 +487,9 @@ body {
 
 .task-header h4 {
   flex: 1;
+  color: var(--text-primary);
   font-size: 0.875rem;
   font-weight: 600;
-  color: var(--text-primary);
   line-height: 1.4;
 }
 
@@ -501,18 +503,18 @@ body {
 }
 
 .task-menu {
-  background: none;
+  padding: 0.25rem;
   border: none;
+  background: none;
   color: var(--text-muted);
   cursor: pointer;
-  padding: 0.25rem;
 }
 
 .task-description {
-  font-size: 0.813rem;
-  color: var(--text-secondary);
-  line-height: 1.5;
   margin-bottom: 1rem;
+  color: var(--text-secondary);
+  font-size: 0.813rem;
+  line-height: 1.5;
 }
 
 .task-progress {
@@ -525,8 +527,8 @@ body {
 .progress-bar {
   flex: 1;
   height: 6px;
-  background: rgba(255, 255, 255, 0.1);
   border-radius: 3px;
+  background: rgb(255 255 255 / 10%);
   overflow: hidden;
 }
 
@@ -537,8 +539,8 @@ body {
 }
 
 .progress-text {
-  font-size: 0.75rem;
   color: var(--text-muted);
+  font-size: 0.75rem;
   font-weight: 500;
 }
 
@@ -558,46 +560,46 @@ body {
 .task-users img {
   width: 24px;
   height: 24px;
+  border: 2px solid rgb(255 255 255 / 10%);
   border-radius: 50%;
-  border: 2px solid rgba(255, 255, 255, 0.1);
 }
 
 .user-count {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 24px;
   height: 24px;
-  background: var(--primary-color);
   border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  background: var(--primary-color);
+  color: var(--text-primary);
   font-size: 0.625rem;
   font-weight: 600;
-  color: var(--text-primary);
 }
 
 .task-time {
   display: flex;
   align-items: center;
   gap: 0.25rem;
-  font-size: 0.75rem;
   color: var(--text-muted);
+  font-size: 0.75rem;
 }
 
 .task-attachments {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  font-size: 0.75rem;
-  color: var(--text-muted);
   margin-bottom: 0.5rem;
+  color: var(--text-muted);
+  font-size: 0.75rem;
 }
 
 .presence-indicators {
-  display: flex;
-  gap: 0.5rem;
   position: absolute;
   top: -8px;
   right: 8px;
+  display: flex;
+  gap: 0.5rem;
 }
 
 .presence-indicator {
@@ -609,20 +611,22 @@ body {
 .presence-indicator img {
   width: 20px;
   height: 20px;
-  border-radius: 50%;
   border: 2px solid var(--success-color);
+  border-radius: 50%;
   animation: presencePulse 2s infinite;
 }
 
 @keyframes presencePulse {
   0% {
-    box-shadow: 0 0 0 0 rgba(82, 196, 26, 0.7);
+    box-shadow: 0 0 0 0 rgb(82 196 26 / 70%);
   }
+
   70% {
-    box-shadow: 0 0 0 10px rgba(82, 196, 26, 0);
+    box-shadow: 0 0 0 10px rgb(82 196 26 / 0%);
   }
+
   100% {
-    box-shadow: 0 0 0 0 rgba(82, 196, 26, 0);
+    box-shadow: 0 0 0 0 rgb(82 196 26 / 0%);
   }
 }
 
@@ -630,16 +634,16 @@ body {
   position: absolute;
   bottom: 24px;
   left: 50%;
-  transform: translateX(-50%);
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
   background: var(--darker-bg);
   color: var(--text-primary);
   font-size: 0.75rem;
-  padding: 0.25rem 0.5rem;
-  border-radius: 4px;
   white-space: nowrap;
   opacity: 0;
-  pointer-events: none;
+  transform: translateX(-50%);
   transition: opacity var(--transition-speed);
+  pointer-events: none;
 }
 
 .presence-indicator:hover .presence-tooltip {
@@ -648,15 +652,15 @@ body {
 
 /* Activity Feed Styles */
 .activity-feed {
-  width: 320px;
-  background: rgba(26, 26, 26, 0.8);
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
-  border-left: 1px solid var(--border-color);
   display: flex;
   flex-direction: column;
+  width: 320px;
+  border-left: 1px solid var(--border-color);
+  background: rgb(26 26 26 / 80%);
   -webkit-transition: -webkit-transform var(--transition-speed);
   transition: transform var(--transition-speed);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
 }
 
 .activity-feed.collapsed {
@@ -672,20 +676,20 @@ body {
 }
 
 .feed-header h3 {
-  font-size: 1rem;
-  font-weight: 600;
-  color: var(--text-primary);
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  color: var(--text-primary);
+  font-size: 1rem;
+  font-weight: 600;
 }
 
 .feed-toggle {
-  background: none;
+  padding: 0.25rem;
   border: none;
+  background: none;
   color: var(--text-muted);
   cursor: pointer;
-  padding: 0.25rem;
   -webkit-transition: -webkit-transform var(--transition-speed);
   transition: transform var(--transition-speed);
 }
@@ -696,8 +700,8 @@ body {
 
 .feed-content {
   flex: 1;
-  overflow-y: auto;
   padding: 1rem 1.5rem;
+  overflow-y: auto;
 }
 
 .activity-item {
@@ -705,7 +709,7 @@ body {
   gap: 0.75rem;
   margin-bottom: 1rem;
   padding-bottom: 1rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgb(255 255 255 / 5%);
 }
 
 .activity-item:last-child {
@@ -721,10 +725,10 @@ body {
 }
 
 .activity-icon.file {
-  background: var(--primary-color);
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  background: var(--primary-color);
   color: var(--text-primary);
 }
 
@@ -739,10 +743,10 @@ body {
 }
 
 .activity-text {
-  font-size: 0.875rem;
-  color: var(--text-primary);
-  line-height: 1.4;
   margin-bottom: 0.25rem;
+  color: var(--text-primary);
+  font-size: 0.875rem;
+  line-height: 1.4;
 }
 
 .activity-text strong {
@@ -750,41 +754,38 @@ body {
 }
 
 .activity-time {
-  font-size: 0.75rem;
   color: var(--text-muted);
+  font-size: 0.75rem;
 }
 
 /* Modal Styles */
 .modal {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.8);
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgb(0 0 0 / 80%);
+  visibility: hidden;
+  opacity: 0;
+  transition: all var(--transition-speed);
   -webkit-backdrop-filter: blur(5px);
   backdrop-filter: blur(5px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-  opacity: 0;
-  visibility: hidden;
-  transition: all var(--transition-speed);
 }
 
 .modal.active {
-  opacity: 1;
   visibility: visible;
+  opacity: 1;
 }
 
 .modal-content {
-  background: var(--dark-bg);
-  border: 1px solid var(--border-color);
-  border-radius: 12px;
   width: 90%;
   max-width: 600px;
   max-height: 80vh;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  background: var(--dark-bg);
   overflow: hidden;
   transform: scale(0.9);
   -webkit-transition: -webkit-transform var(--transition-speed);
@@ -804,18 +805,18 @@ body {
 }
 
 .modal-header h3 {
+  color: var(--text-primary);
   font-size: 1.25rem;
   font-weight: 600;
-  color: var(--text-primary);
 }
 
 .modal-close {
-  background: none;
+  padding: 0.25rem;
   border: none;
+  background: none;
   color: var(--text-muted);
   font-size: 1.25rem;
   cursor: pointer;
-  padding: 0.25rem;
   transition: color var(--transition-speed);
 }
 
@@ -824,9 +825,9 @@ body {
 }
 
 .modal-body {
+  max-height: calc(80vh - 80px);
   padding: 1.5rem;
   overflow-y: auto;
-  max-height: calc(80vh - 80px);
 }
 
 /* Time Tracking Styles */
@@ -837,16 +838,16 @@ body {
 }
 
 .current-task {
-  text-align: center;
   padding: 1.5rem;
-  background: rgba(255, 255, 255, 0.03);
   border-radius: 8px;
+  background: rgb(255 255 255 / 3%);
+  text-align: center;
 }
 
 .current-task h4 {
-  font-size: 1rem;
-  color: var(--text-secondary);
   margin-bottom: 1rem;
+  color: var(--text-secondary);
+  font-size: 1rem;
 }
 
 .time-display {
@@ -856,10 +857,10 @@ body {
 }
 
 .time-value {
-  font-size: 3rem;
-  font-weight: 300;
   color: var(--primary-color);
   font-family: 'Courier New', monospace;
+  font-size: 3rem;
+  font-weight: 300;
 }
 
 .time-controls {
@@ -869,15 +870,15 @@ body {
 }
 
 .time-entries {
-  background: rgba(255, 255, 255, 0.03);
-  border-radius: 8px;
   padding: 1rem;
+  border-radius: 8px;
+  background: rgb(255 255 255 / 3%);
 }
 
 .time-entries h4 {
-  font-size: 1rem;
-  color: var(--text-primary);
   margin-bottom: 1rem;
+  color: var(--text-primary);
+  font-size: 1rem;
 }
 
 .entry-list {
@@ -891,26 +892,26 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 0.75rem;
-  background: rgba(255, 255, 255, 0.05);
   border-radius: 6px;
+  background: rgb(255 255 255 / 5%);
 }
 
 .entry-task {
-  font-size: 0.875rem;
   color: var(--text-primary);
+  font-size: 0.875rem;
 }
 
 .entry-time {
-  font-size: 0.875rem;
   color: var(--text-secondary);
+  font-size: 0.875rem;
 }
 
 .edit-entry {
-  background: none;
+  padding: 0.25rem;
   border: none;
+  background: none;
   color: var(--text-muted);
   cursor: pointer;
-  padding: 0.25rem;
   transition: color var(--transition-speed);
 }
 
@@ -924,9 +925,9 @@ body {
 }
 
 .upload-zone {
+  padding: 2rem;
   border: 2px dashed var(--border-color);
   border-radius: 8px;
-  padding: 2rem;
   text-align: center;
   cursor: pointer;
   transition: all var(--transition-speed);
@@ -934,18 +935,18 @@ body {
 
 .upload-zone:hover {
   border-color: var(--primary-color);
-  background: rgba(255, 255, 255, 0.03);
+  background: rgb(255 255 255 / 3%);
 }
 
 .upload-zone i {
-  font-size: 3rem;
-  color: var(--text-muted);
   margin-bottom: 1rem;
+  color: var(--text-muted);
+  font-size: 3rem;
 }
 
 .upload-zone p {
-  font-size: 0.875rem;
   color: var(--text-secondary);
+  font-size: 0.875rem;
 }
 
 .upload-zone input[type='file'] {
@@ -953,9 +954,9 @@ body {
 }
 
 .file-list h4 {
-  font-size: 1rem;
-  color: var(--text-primary);
   margin-bottom: 1rem;
+  color: var(--text-primary);
+  font-size: 1rem;
 }
 
 .file-items {
@@ -969,18 +970,18 @@ body {
   align-items: center;
   gap: 0.75rem;
   padding: 0.75rem;
-  background: rgba(255, 255, 255, 0.05);
   border-radius: 6px;
+  background: rgb(255 255 255 / 5%);
 }
 
 .file-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 40px;
   height: 40px;
-  background: var(--primary-color);
   border-radius: 6px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  background: var(--primary-color);
   color: var(--text-primary);
 }
 
@@ -989,14 +990,14 @@ body {
 }
 
 .file-name {
-  font-size: 0.875rem;
-  color: var(--text-primary);
   margin-bottom: 0.25rem;
+  color: var(--text-primary);
+  font-size: 0.875rem;
 }
 
 .file-size {
-  font-size: 0.75rem;
   color: var(--text-muted);
+  font-size: 0.75rem;
 }
 
 .file-actions {
@@ -1005,11 +1006,11 @@ body {
 }
 
 .file-actions button {
-  background: none;
+  padding: 0.25rem;
   border: none;
+  background: none;
   color: var(--text-muted);
   cursor: pointer;
-  padding: 0.25rem;
   transition: color var(--transition-speed);
 }
 
@@ -1020,38 +1021,38 @@ body {
 /* Floating Action Buttons */
 .fab-container {
   position: fixed;
-  bottom: 2rem;
   right: 2rem;
+  bottom: 2rem;
+  z-index: 50;
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  z-index: 50;
 }
 
 .fab {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 56px;
   height: 56px;
+  border: none;
   border-radius: 50%;
   background: var(--primary-color);
-  border: none;
   color: var(--text-primary);
   font-size: 1.25rem;
   cursor: pointer;
   box-shadow: var(--shadow-medium);
   transition: all var(--transition-speed);
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .fab:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-heavy);
   background: #357abd;
+  box-shadow: var(--shadow-heavy);
+  transform: translateY(-2px);
 }
 
 /* Responsive Design */
-@media (max-width: 1200px) {
+@media (width <= 1200px) {
   .sidebar {
     width: 280px;
   }
@@ -1061,7 +1062,7 @@ body {
   }
 }
 
-@media (max-width: 768px) {
+@media (width <= 768px) {
   .app-header {
     padding: 1rem;
   }
@@ -1076,9 +1077,9 @@ body {
 
   .sidebar {
     position: fixed;
-    left: -280px;
     top: 0;
     bottom: 0;
+    left: -280px;
     z-index: 200;
     transition: left var(--transition-speed);
   }
@@ -1089,8 +1090,8 @@ body {
 
   .activity-feed {
     position: fixed;
-    right: -280px;
     top: 0;
+    right: -280px;
     bottom: 0;
     z-index: 200;
     transform: none;
@@ -1102,8 +1103,8 @@ body {
   }
 
   .task-board {
-    padding: 1rem;
     gap: 0.5rem;
+    padding: 1rem;
   }
 
   .task-column {
@@ -1118,13 +1119,13 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.05);
   border-radius: 4px;
+  background: rgb(255 255 255 / 5%);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--border-color);
   border-radius: 4px;
+  background: var(--border-color);
 }
 
 ::-webkit-scrollbar-thumb:hover {
@@ -1140,9 +1141,9 @@ body {
 .skeleton {
   background: linear-gradient(
     90deg,
-    rgba(255, 255, 255, 0.05) 25%,
-    rgba(255, 255, 255, 0.1) 50%,
-    rgba(255, 255, 255, 0.05) 75%
+    rgb(255 255 255 / 5%) 25%,
+    rgb(255 255 255 / 10%) 50%,
+    rgb(255 255 255 / 5%) 75%
   );
   background-size: 200% 100%;
   animation: loading 1.5s infinite;
@@ -1152,6 +1153,7 @@ body {
   0% {
     background-position: 200% 0;
   }
+
   100% {
     background-position: -200% 0;
   }
@@ -1162,21 +1164,21 @@ body {
   position: fixed;
   bottom: 2rem;
   left: 50%;
-  transform: translateX(-50%);
-  background: var(--dark-bg);
+  z-index: 2000;
+  padding: 1rem 1.5rem;
   border: 1px solid var(--border-color);
   border-radius: 8px;
-  padding: 1rem 1.5rem;
-  box-shadow: var(--shadow-heavy);
-  z-index: 2000;
-  opacity: 0;
+  background: var(--dark-bg);
   visibility: hidden;
+  opacity: 0;
+  box-shadow: var(--shadow-heavy);
+  transform: translateX(-50%);
   transition: all var(--transition-speed);
 }
 
 .toast.show {
-  opacity: 1;
   visibility: visible;
+  opacity: 1;
   transform: translateX(-50%) translateY(-10px);
 }
 
